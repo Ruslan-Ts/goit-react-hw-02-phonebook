@@ -17,6 +17,18 @@ class App extends Component {
   };
   
   handleContactSubmit = data => {
+    // console.log(data);
+    // console.log(this.state.contacts);
+  
+    for (const contact of this.state.contacts) {
+      if (data.name === contact.name) {
+        return alert(`Контакт з імʼям ${data.name} вже існує`);
+      } else if (data.number === contact.number) {
+        return alert(`Контакт з номером ${data.number} вже існує`);
+      }
+    }
+
+   
     this.setState(prevState => ({
       contacts: [...prevState.contacts, { ...data, id: nanoid() }],
     }));
